@@ -1,0 +1,10 @@
+kodi
+xserver-xorg
+xinit
+dnsmasq
+hostapd
+cryfs
+raspi-config
+python-crypto
+python-yaml
+usbmount
