@@ -8,3 +8,5 @@ raspi-config
 python-crypto
 python-yaml
 usbmount
+libraspberrypi0
+cryptsetup

@@ -1,0 +1,15 @@
+[Unit]
+Description = Dispmanx VNC Server
+After = remote-fs.target network-online.target
+Wants = network-online.target
+
+[Service]
+User = root
+Group = root
+Type = simple
+ExecStart = /usr/local/bin/dispmanx_vncserver -rfbport 5900
+Restart = always
+RestartSec = 1
+
+[Install]
+WantedBy = multi-user.target

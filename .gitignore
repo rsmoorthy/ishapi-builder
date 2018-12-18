@@ -7,3 +7,4 @@ SKIP_IMAGES
 .pc
 *-pc
 apt-cacher-ng/
+stage2/04-ishapi-setup/files/ishapi

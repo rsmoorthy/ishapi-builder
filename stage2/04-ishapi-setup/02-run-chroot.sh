@@ -9,12 +9,13 @@ uname -a
 ls -l /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable kodi.service
-systemctl enable ssh.service
+systemctl disable ssh.service
 
 systemctl enable dnsmasq.service
 systemctl enable hostapd.service
 systemctl enable autohotspot.service
 systemctl enable piserver.service
+systemctl disable dispmanx.service
 
 if ! grep -E '^interface wlan0' /etc/dhcpcd.conf
 then
@@ -46,8 +47,10 @@ systemctl disable polkit.service || true
 rm -f /etc/systemd/system/dhcpcd.service.d/wait.conf
 
 # Create directory
-mkdir -p /storage || true
+mkdir -p /storage/ishamedia || true
 chown -R pi.pi /storage
+
+mkdir -p /mnt/Ishamedia || true
 
 #
 ## Delete unneeded packages
