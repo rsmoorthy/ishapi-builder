@@ -43,6 +43,9 @@ systemctl disable remote-fs.target || true
 systemctl disable cron || true
 systemctl disable polkit.service || true
 
+# Disable this - so that /boot/wpa_supplicant.conf is not moved over
+systemctl disable raspberrypi-net-mods.service
+
 # Dont wait for network during booting
 rm -f /etc/systemd/system/dhcpcd.service.d/wait.conf
 

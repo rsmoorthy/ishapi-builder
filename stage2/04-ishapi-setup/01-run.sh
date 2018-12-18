@@ -27,12 +27,14 @@ install -m 644 files/sshd_config        "${ROOTFS_DIR}/etc/ssh/sshd_config"
 
 # Pi Web server
 install -d -m 755 "${ROOTFS_DIR}/opt/ishapi"
-install -m 755 files/web.py     "${ROOTFS_DIR}/opt/ishapi/"
+install -m 755 files/ishapi/piserver/web.py     "${ROOTFS_DIR}/opt/ishapi/"
 install -m 755 files/ishapi/piserver/vols.bash     "${ROOTFS_DIR}/opt/ishapi/"
 install -m 755 files/ishapi/piserver/wificfg.py     "${ROOTFS_DIR}/opt/ishapi/"
 install -m 755 files/ishapi/piserver/AESCipher.py     "${ROOTFS_DIR}/opt/ishapi/AESCipher.py"
 install -m 755 files/ishapi/piserver/mycerts.py     "${ROOTFS_DIR}/opt/ishapi/mycerts.py"
 install -m 644 files/ishapi/piserver/piserver.service	"${ROOTFS_DIR}/etc/systemd/system/"
+
+install -m 644 files/ishapi/piserver/01_decrypt_and_mount	"${ROOTFS_DIR}/etc/usbmount/mount.d/"
 
 # Poweroff and reboot (that uses sudo to do actual ones)
 install -m 755 files/reboot     "${ROOTFS_DIR}/usr/local/bin/reboot"

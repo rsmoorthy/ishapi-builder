@@ -10,3 +10,5 @@ python-yaml
 usbmount
 libraspberrypi0
 cryptsetup
+libvncserver-dev
+kpartx
