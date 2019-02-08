@@ -19,6 +19,8 @@ fi
 
 # Chmod tty0 to 666
 chmod 666 /dev/tty0
+chmod 666 /dev/uinput
+modprobe evdev
 
 # Disable IPv6
 sysctl -w net.ipv6.conf.all.disable_ipv6=1
@@ -27,6 +29,14 @@ sysctl -w net.ipv6.conf.default.disable_ipv6=1
 # IPTables rules
 iptables -t filter -A INPUT -i lo -j ACCEPT
 iptables -t filter -A INPUT -p udp --sport 53 -j ACCEPT
+iptables -t filter -A INPUT -p udp --sport 67 -j ACCEPT
+iptables -t filter -A INPUT -p udp --sport 68 -j ACCEPT
+iptables -t filter -A INPUT -p tcp --sport 67 -j ACCEPT
+iptables -t filter -A INPUT -p tcp --sport 68 -j ACCEPT
+iptables -t filter -A INPUT -p udp --dport 67 -j ACCEPT
+iptables -t filter -A INPUT -p udp --dport 68 -j ACCEPT
+iptables -t filter -A INPUT -p tcp --dport 67 -j ACCEPT
+iptables -t filter -A INPUT -p tcp --dport 68 -j ACCEPT
 iptables -t filter -A INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT
 iptables -t filter -A INPUT -p tcp --dport 8080 -j ACCEPT
 iptables -t filter -A INPUT -p tcp --dport 4443 -j ACCEPT

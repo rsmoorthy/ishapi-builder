@@ -15,8 +15,9 @@ install -m 644 files/cmdline.txt "${ROOTFS_DIR}/boot/"
 install -d -m 700 "${ROOTFS_DIR}/home/pi/.ssh"
 install -m 600 files/ssh_keys.txt "${ROOTFS_DIR}/home/pi/.ssh/authorized_keys"
 
-# rc.local file
+# rc.local file and modules
 install -m 755 files/rc.local "${ROOTFS_DIR}/etc/"
+install -m 755 files/modules "${ROOTFS_DIR}/etc/"
 
 # Splash image
 install -m 644 files/kodi_splash.png     "${ROOTFS_DIR}/usr/share/kodi/media/Splash.png"
@@ -45,6 +46,14 @@ cp -a files/ishapi/kodi-usrshare/addons/* "${ROOTFS_DIR}/usr/share/kodi/addons/"
 chown -R root.root "${ROOTFS_DIR}/usr/share/kodi/addons/"
 cp -a files/ishapi/kodi-usrshare/system/* "${ROOTFS_DIR}/usr/share/kodi/system/"
 cp -a files/ishapi/kodi-usrshare/media/* "${ROOTFS_DIR}/usr/share/kodi/media/"
+
+# Install kodi home files
+mkdir -p "${ROOTFS_DIR}/home/pi"
+MYDIR=$(pwd)
+(cd "${ROOTFS_DIR}/home/pi"; tar zxf $MYDIR/files/ishapi/kodi-home/kodihome.tgz)
+cp files/ishapi/kodi-home/guisettings.xml "${ROOTFS_DIR}/home/pi/.kodi/userdata/"
+cp files/ishapi/kodi-home/sources.xml "${ROOTFS_DIR}/home/pi/.kodi/userdata/"
+chown -R pi.pi "${ROOTFS_DIR}/home/pi/.kodi"
 
 # Dispmanx VNC
 install -m 755 files/dispmanx_vncserver "${ROOTFS_DIR}/usr/local/bin/"

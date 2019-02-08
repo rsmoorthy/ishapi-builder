@@ -54,3 +54,7 @@
 
 # Enable audio (loads snd_bcm2835)
 dtparam=audio=on
+audio_pwm_mode=1
+
+# Set gpu_mem to be 256
+gpu_mem=256
