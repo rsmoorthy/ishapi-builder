@@ -49,5 +49,7 @@ iptables -A LOGGING -j DROP
 iptables -t filter -P INPUT DROP
 iptables -t filter -P FORWARD DROP
 
+rm -f /tmp/volume_caches
+find /mnt/Ishamedia -type d -empty -exec rmdir {} \; -print
+
 exit 0
-  
